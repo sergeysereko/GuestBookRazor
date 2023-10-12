@@ -1,4 +1,18 @@
+using Microsoft.EntityFrameworkCore;
+using GuestBookRazor.Models;
+using GuestBookRazor.Repository;
+
+
 var builder = WebApplication.CreateBuilder(args);
+
+// Получаем строку подключения из файла конфигурации
+string? connection = builder.Configuration.GetConnectionString("DefaultConnection");
+
+// добавляем контекст ApplicationContext в качестве сервиса в приложение
+builder.Services.AddDbContext<GuestBookContext>(options => options.UseSqlServer(connection));
+
+builder.Services.AddScoped<IUserRepository, UserRepository>();
+builder.Services.AddScoped<IMessageRepository, MessageRepository>();
 
 // Add services to the container.
 builder.Services.AddRazorPages();

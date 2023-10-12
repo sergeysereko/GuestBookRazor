@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace GuestBookRazor.Repository
 {
-    public class UserRepository : IRepository<User>
+    public class UserRepository : IUserRepository
     {
         private GuestBookContext db;
 

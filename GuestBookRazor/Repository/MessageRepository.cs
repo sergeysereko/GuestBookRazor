@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace GuestBookRazor.Repository
 {
-    public class MessageRepository : IRepository<Message>
+    public class MessageRepository : IMessageRepository
     {
         private GuestBookContext db;
 
