@@ -1,20 +1,19 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.EntityFrameworkCore;
+using GuestBookRazor.Models;
+using GuestBookRazor.Interfaces;
 
 namespace GuestBookRazor.Pages
 {
     public class IndexModel : PageModel
     {
-        private readonly ILogger<IndexModel> _logger;
+        public IList<Message> Message { get; set; } = default!;
 
-        public IndexModel(ILogger<IndexModel> logger)
+        public async Task OnGetAsync([FromServices] IUnitOfWork repo)
         {
-            _logger = logger;
+            Message = await repo.Messages.GetAll();
         }
-
-        public void OnGet()
-        {
-
-        }
+      
     }
 }

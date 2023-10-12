@@ -1,7 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using GuestBookRazor.Models;
 using GuestBookRazor.Repository;
-
+using GuestBookRazor.Interfaces;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -11,8 +11,15 @@ string? connection = builder.Configuration.GetConnectionString("DefaultConnectio
 // добавляем контекст ApplicationContext в качестве сервиса в приложение
 builder.Services.AddDbContext<GuestBookContext>(options => options.UseSqlServer(connection));
 
-builder.Services.AddScoped<IUserRepository, UserRepository>();
-builder.Services.AddScoped<IMessageRepository, MessageRepository>();
+builder.Services.AddScoped<IUnitOfWork, ContextUnitOfWork>();
+
+builder.Services.AddDistributedMemoryCache();
+builder.Services.AddSession(options =>
+{
+    options.IdleTimeout = TimeSpan.FromMinutes(10); // Длительность сеанса (тайм-аут завершения сеанса)
+    options.Cookie.Name = "Session"; // Каждая сессия имеет свой идентификатор, который сохраняется в куках.
+
+});
 
 // Add services to the container.
 builder.Services.AddRazorPages();
@@ -27,6 +34,7 @@ if (!app.Environment.IsDevelopment())
     app.UseHsts();
 }
 
+app.UseSession();   // Добавляем middleware-компонент для работы с сессиями
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 

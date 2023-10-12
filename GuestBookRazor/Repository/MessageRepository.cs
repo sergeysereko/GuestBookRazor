@@ -1,9 +1,10 @@
-﻿using GuestBookRazor.Models;
+﻿using GuestBookRazor.Interfaces;
+using GuestBookRazor.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace GuestBookRazor.Repository
 {
-    public class MessageRepository : IMessageRepository
+    public class MessageRepository : IRepository<Message>
     {
         private GuestBookContext db;
 
@@ -17,6 +18,9 @@ namespace GuestBookRazor.Repository
             var gbContext = db.Messages.Include(p => p.User);
             return await gbContext.ToListAsync();
         }
+
+
+
 
         public async Task<Message> Get(string name)
         {

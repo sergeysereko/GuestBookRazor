@@ -1,10 +1,11 @@
-﻿using GuestBookRazor.Models;
+﻿using GuestBookRazor.Interfaces;
+using GuestBookRazor.Models;
 using Microsoft.EntityFrameworkCore;
 
 
 namespace GuestBookRazor.Repository
 {
-    public class UserRepository : IUserRepository
+    public class UserRepository : IRepository<User>
     {
         private GuestBookContext db;
 

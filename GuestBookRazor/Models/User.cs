@@ -4,6 +4,10 @@ namespace GuestBookRazor.Models
 {
     public class User
     {
+        public User()
+        {
+            this.Message = new HashSet<Message>();
+        }
         public int Id { get; set; }
 
         [Required(ErrorMessage = "Поле должно быть установлено")]
@@ -15,5 +19,7 @@ namespace GuestBookRazor.Models
         public string Pwd { get; set; }
 
         public string? Salt { get; set; }
+
+        public ICollection<Message> Message { get; set; }
     }
 }

@@ -14,6 +14,6 @@ namespace GuestBookRazor.Models
 
         public int Id_User { get; set; }
 
-        public string? User { get; set; }
+        public User? User { get; set; }
     }
 }
