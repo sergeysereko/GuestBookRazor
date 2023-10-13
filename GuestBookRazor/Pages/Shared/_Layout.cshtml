@@ -23,10 +23,10 @@
                          @if (Context.Session.GetString("login") == null)
                         {
                             <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Login" asp-action="Login">Вход в систему</a>
+                                <a class="nav-link text-dark" asp-area="" asp-page="Login">Вход в систему</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Login" asp-action="Registration">Регистрация</a>
+                                <a class="nav-link text-dark" asp-area="" asp-page="Registration">Регистрация</a>
                             </li>
                         }
                         @if (Context.Session.GetString("login") != null)
@@ -40,7 +40,7 @@
                             </li>
 
                             <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Logout">Выход</a>
+                                <a class="nav-link text-dark" asp-area="" asp-page="Logout">Выход</a>
                             </li>
                                                
                         } 
