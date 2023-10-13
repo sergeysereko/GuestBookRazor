@@ -1,0 +1,52 @@
+﻿@page
+@model GuestBookRazor.Pages.RegistrationModel
+@{
+    ViewData["Title"] = "Registration";
+    Layout = "/Pages/Shared/_Layout.cshtml";
+}
+
+
+<h1>Регистрация</h1>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-page="Registration" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="registration.FirstName" class="control-label">Имя</label>
+                <input asp-for="registration.FirstName" class="form-control" />
+                <span asp-validation-for="registration.FirstName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="registration.LastName" class="control-label">Фамилия</label>
+                <input asp-for="registration.LastName" class="form-control" />
+                <span asp-validation-for="registration.LastName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="registration.Login" class="control-label">Логин</label>
+                <input asp-for="registration.Login" class="form-control" />
+                <span asp-validation-for="registration.Login" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="registration.Password" class="control-label">Пароль</label>
+                <input asp-for="registration.Password" class="form-control" />
+                <span asp-validation-for="registration.Password" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="registration.PasswordConfirm" class="control-label">Повтор пароля</label>
+                <input asp-for="registration.PasswordConfirm" class="form-control" />
+                <span asp-validation-for="registration.PasswordConfirm" class="text-danger"></span>
+            </div>
+            <br />
+            <div class="form-group">
+                <input type="submit" value="Отправить" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

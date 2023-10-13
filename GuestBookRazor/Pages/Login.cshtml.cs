@@ -16,7 +16,6 @@ namespace GuestBookRazor.Pages
             _context = context;
         }
 
-       
 
 
         [BindProperty]
@@ -24,40 +23,6 @@ namespace GuestBookRazor.Pages
         public void OnGet()
         {
         }
-
-        //public async Task OnPost(Login logon, [FromServices] IUnitOfWork repo) 
-        //{
-        //    if (ModelState.IsValid)
-        //    {
-        //        var users = await repo.Users.GetAll();
-        //        if (users.Count() == 0)
-        //        {
-        //            ModelState.AddModelError("", "Wrong login or password!");
-        //           return Page();
-        //        }
-        //        var usersf = users.Where(a => a.Name == logon.UserName);
-        //        if (usersf.ToList().Count == 0)
-        //        {
-        //            ModelState.AddModelError("", "Wrong login or password!");
-        //           return View(logon);
-        //        }
-        //        var user = usersf.First();
-        //        string? salt = user.Salt;
-
-        //        string passw = logon.Password;
-        //        var hash = await GetHashCode(salt, passw);
-
-        //        if (user.Pwd != hash.ToString())
-        //        {
-        //            ModelState.AddModelError("", "Wrong login or password!");
-        //           return View(logon);
-        //        }
-        //        HttpContext.Session.SetString("login", user.Name);
-
-        //        return RedirectToAction("Index", "Home");
-        //    }
-        //    return View(logon);
-        //}
 
 
         public async Task<IActionResult> OnPost(Login logon, [FromServices] IUnitOfWork repo)
